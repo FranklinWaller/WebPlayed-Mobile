@@ -25,3 +25,23 @@ build/Release
 # Dependency directory
 # https://www.npmjs.org/doc/misc/npm-faq.html#should-i-check-my-node_modules-folder-into-git
 node_modules
+
+# Platforms
+platforms/android
+platforms/ios
+
+.idea/.name
+
+.idea/jsLibraryMappings.xml
+
+.idea/libraries/WebPlayed_Mobile_node_modules.xml
+
+.idea/misc.xml
+
+.idea/modules.xml
+
+.idea/vcs.xml
+
+.idea/WebPlayed-Mobile.iml
+
+.idea/workspace.xml

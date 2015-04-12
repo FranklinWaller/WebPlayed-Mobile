@@ -1,0 +1,11 @@
+/* Empty. Add your own CSS if you like */
+
+.dashboard-image {
+    background-image: url(http://localhost:8888/default/com.webplayed.clouddrive/get/14679-clouds-cloud-wallpaper.jpg/);
+    background-size: cover;
+}
+
+.dashboard-overlay{
+    background-color: #222;
+    opacity: 0.8;
+}
