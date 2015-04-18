@@ -1,0 +1,68 @@
+<ion-view view-title="Showcase" hide-nav-bar="true" class="padding">
+    <ion-content scroll="false">
+        <ion-slide-box show-pager="true" active-slide="showcaseActiveSlide" on-slide-changed="slideHasChanged($index)">
+            <ion-slide class="background-opening">
+                <div class="box opening">
+                    <h1></h1>
+                    <p>One platform, for them all.</p>
+                    <div class="bottom-section">
+                        <button class="button button-block button-positive" ng-click="moveToSlide(1)">
+                            Show me what this is!
+                        </button>
+                        <a href="#" ng-click="moveToSlide(2)">Skip the explanations.</a>
+                    </div>
+
+                </div>
+            </ion-slide>
+
+
+            <ion-slide class="background-second">
+                <div class="box second">
+                    <h1>Keep on moving</h1>
+                    <p>Take your games and apps everywhere you go</p>
+                </div>
+            </ion-slide>
+            <ion-slide class="background-one">
+                <div class="box first padding">
+                    <h1>WebPlayed</h1>
+                    <p>
+                        Games and Apps for every device
+                    </p>
+                    <button class="button button-block button-positive" ng-click="modal.show()">
+                        Log in
+                    </button>
+                </div>
+            </ion-slide>
+            <ion-slide class="background-three">
+                <div class="box third"><h1>PINK</h1></div>
+            </ion-slide>
+        </ion-slide-box>
+
+        <!-- Login modal -->
+        <script id="my-modal.html" type="text/ng-template">
+            <ion-modal-view>
+                <ion-header-bar>
+                    <button class="button button-clear button-positive" ng-click="modal.hide()">Close</button>
+                    <h1 class="title">Login</h1>
+                </ion-header-bar>
+                <ion-content>
+                    <form ng-submit="login()">
+                        <div class="list">
+                            <label class="item item-input item-floating-label">
+                                <span class="input-label">E-mail</span>
+                                <input type="email" placeholder="E-mail" ng-model="user.email">
+                            </label>
+                            <label class="item item-input item-floating-label">
+                                <span class="input-label">Password</span>
+                                <input type="password" placeholder="Password" ng-model="user.password">
+                            </label>
+                        </div>
+                        <button class="button button-block button-positive">
+                            Login
+                        </button>
+                    </form>
+                </ion-content>
+            </ion-modal-view>
+        </script>
+    </ion-content>
+</ion-view>

@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
+var app = angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'LocalStorageModule'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -36,10 +36,22 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     templateUrl: "templates/tabs.html"
   })
 
-      .state('login',{
-        url: "/login",
-        templateUrl: "templates/login.html",
-        controller: 'LoginCtrl'
+  .state('login',{
+    url: "/login",
+    templateUrl: "templates/login.html",
+    controller: 'LoginCtrl'
+  })
+
+      .state('showcase', {
+        url: "/showcase",
+        templateUrl: "templates/showcase.html",
+        controller: 'ShowcaseCtrl'
+      })
+
+      .state('app', {
+        url: '/app/:namespace',
+        templateUrL: 'templates/app.html',
+        controller: 'AppCtrl'
       })
 
   // Each tab has its own nav history stack:
@@ -87,7 +99,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       if(authenticate.isLoggedIn()){
         $urlRouterProvider.otherwise('/tab/dash');
       } else {
-        $urlRouterProvider.otherwise('/login');
+        $urlRouterProvider.otherwise('/showcase');
       }
 
 

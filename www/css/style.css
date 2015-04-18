@@ -9,3 +9,127 @@
     background-color: #222;
     opacity: 0.8;
 }
+
+
+/* Showcase part */
+.slider {
+    height: 100%;
+}
+
+.slider-slide {
+    height: 100%;
+}
+
+.slider-pager {
+    display: none;
+    font-size: 10px;
+    height: 25px;
+}
+
+.slider-pager:after {
+    content: "Swipe to learn more!";
+    display: block;
+}
+
+.box {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+.box h1 {
+    font-weight: 100;
+    text-align: center;
+    padding-top: 30px;
+    margin-bottom: 50px;
+    color:white;
+}
+
+.box p {
+    text-align: center;
+    font-size: 18px;
+    margin-bottom: 30px;
+    font-weight: 200;
+    color:white;
+}
+
+.box.opening p, .box.opening h1{
+    color:black;
+}
+
+.box.opening h1 {
+    background-image: url("../img/WebPlayed512.png");
+    background-position: center;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    width: 100px;
+    height: 100px;
+    display: block;
+    text-align: center;
+    margin: 30px auto;
+}
+
+.box.opening p {
+    font-size: 30px;
+    line-height: 35px;
+}
+
+.background-one {
+    background-image: url(http://www.freebiesgallery.com/wp-content/uploads/2014/02/blurred-background-9.jpg);
+    background-size: cover;
+    background-position: center;
+    height: 100%;
+}
+
+.background-second {
+    background-image: url(http://www.momscleanairforce.org/wp-content/uploads/gratitude.jpg);
+    background-size: cover;
+    background-position: center;
+    height: 100%;
+}
+
+.scroll {
+    height: 100%;
+}
+
+.bottom-section {
+    position: absolute;
+    bottom: 30px;
+    padding: 0 20px;
+    width: 100%;
+}
+
+.bottom-section button {
+}
+
+.bottom-section a {
+    text-align: center;
+    text-decoration: none;
+    color:#252525;
+    position: relative;
+    display: block;
+    margin-top: 20px;
+    font-size: 11px;
+}
+
+.app .content {
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    padding: 9px;
+}
+
+.app .content img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.app h2 {
+    margin-top: -5px;
+    font-weight: 200;
+    font-size: 14px;
+    text-align: center;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}

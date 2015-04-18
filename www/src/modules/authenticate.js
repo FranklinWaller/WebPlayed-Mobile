@@ -7,5 +7,9 @@ var authenticate = {
         }
 
         return false;
+    },
+
+    login: function(email, password){
+
     }
 };
