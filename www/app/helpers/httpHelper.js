@@ -36,7 +36,7 @@ var httpHelper = (function(){
             type: type,
             data: data,
             beforeSend: function(xhr){
-                xhr.setRequestHeader('Cookie', 'hash=' + user.authData.hash);
+                //xhr.setRequestHeader('Cookie', 'hash=' + user.authData.hash);
             },
             success: function(res) {
                 callback({

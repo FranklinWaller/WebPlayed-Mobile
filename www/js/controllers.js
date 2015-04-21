@@ -62,37 +62,80 @@ appControllers.controller('LoginCtrl', function($scope, $state){
   }
 });
 
-appControllers.controller('DashCtrl', function($scope, $filter) {
+appControllers.controller('DashCtrl', function($scope, $state, $ionicHistory, User) {
+    $scope.doRefresh = function(){
+        User.getInstalledApps(function(apps){
+            $scope.apps = apps;
+            $scope.$broadcast('scroll.refreshComplete');
+        });
+    };
 
-    httpHelper.api('Me/Installed', 'GET', {
-        begin: 0,
-        end: 50
-    }, function(result){
-        $scope.appsGrouped = $filter('groupBy')(result.response, 3);
+    $scope.openApp = function(namespace){
+        $ionicHistory.clearHistory();
+        $state.go('app',{
+            namespace: namespace
+        });
+    };
+
+    User.getInstalledApps(function(apps){
+        $scope.apps = apps;
     });
 });
 
-appControllers.controller('ChatsCtrl', function($scope, Chats) {
-  $scope.chats = Chats.all();
-  $scope.remove = function(chat) {
-    Chats.remove(chat);
-  }
+appControllers.controller('ChatsCtrl', function($scope, $state, User) {
+    User.getNotifications(function(notifications){
+        $scope.notifications = notifications.notifications;
+    });
+
+    $scope.doRefresh = function(){
+        User.getNotifications(function(notifications){
+            $scope.notifications = notifications.notifications;
+            $scope.$broadcast('scroll.refreshComplete');
+        });
+    };
+
+    $scope.openApp = function(namespace, action){
+        $state.go('app', {
+            namespace:namespace
+        });
+    };
 });
 
-appControllers.controller('ChatDetailCtrl', function($scope, $stateParams, Chats) {
-  $scope.chat = Chats.get($stateParams.chatId);
-});
-
-appControllers.controller('AppCtrl', function($scope, $stateParams) {
+appControllers.controller('ChatDetailCtrl', function($scope, $stateParams, User) {
 
 });
 
-appControllers.controller('AccountCtrl', function($scope, $state) {
+appControllers.controller('AppCtrl', function($scope, $state, $stateParams, $ionicViewService, $ionicPlatform, $ionicHistory, User) {
+    var user = JSON.parse(localStorage.getItem('user'));
+    var app = User.getInstalledApp($stateParams.namespace);
+    var iCanvas = $("#icanvas");
+
+    //App should not be scrollable
+    if(app.scrollable == '1'){
+        iCanvas.attr('scrolling', 'no');
+    } else {
+        iCanvas.attr('scrolling', 'yes');
+    }
+
+    $scope.app = {
+        url: base_url + 'app/' + $stateParams.namespace + '?wbp_refresh_hash=' + user.authData.hash
+    };
+
+    $scope.return = function(){
+        //Close the app or otherwise we will get memory problems.
+        iCanvas.attr('src', 'about:blank');
+        $ionicHistory.goBack();
+    };
+});
+
+appControllers.controller('AccountCtrl', function($scope, $state, User) {
   $scope.settings = {
     enableFriends: true
   };
 
     $scope.logout = function(){
+        User.logout();
+
         localStorage.clear();
         $state.go('showcase');
     }

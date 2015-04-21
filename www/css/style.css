@@ -133,3 +133,31 @@
     text-overflow: ellipsis;
     overflow: hidden;
 }
+
+/* Canvas */
+
+.icanvas {
+    width: 1px;
+    height: 1px;
+    min-width: 100%;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    height: 1px;
+    min-height: calc(100% - 20px);
+}
+
+.return {
+    width: 100%;
+    background-color: #252525;
+    margin-top: 20px;
+}
+
+.return a {
+    color:white;
+    height: 20px;
+    text-align: center;
+    display: block;
+    margin-top:0px;
+    width: 100%;
+    text-decoration: none;
+}

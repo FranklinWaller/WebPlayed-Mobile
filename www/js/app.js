@@ -21,7 +21,8 @@ var app = angular.module('starter', ['ionic', 'starter.controllers', 'starter.se
   });
 })
 
-.config(function($stateProvider, $urlRouterProvider) {
+.config(function($stateProvider, $urlRouterProvider, $sceProvider) {
+      $sceProvider.enabled(false);
 
   // Ionic uses AngularUI Router which uses the concept of states
   // Learn more here: https://github.com/angular-ui/ui-router
@@ -50,7 +51,7 @@ var app = angular.module('starter', ['ionic', 'starter.controllers', 'starter.se
 
       .state('app', {
         url: '/app/:namespace',
-        templateUrL: 'templates/app.html',
+        templateUrl: 'templates/app.html',
         controller: 'AppCtrl'
       })
 

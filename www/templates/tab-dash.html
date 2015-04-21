@@ -1,20 +1,17 @@
 <ion-view view-title="Apps">
-    <ion-content class="padding">
+    <ion-content>
         <ion-refresher
                 pulling-text="Pull to refresh..."
                 spinner="crescent"
                 pulling-icon="ion-ios-arrow-down"
                 on-refresh="doRefresh()">
         </ion-refresher>
-        <div class="row"  ng-repeat="apps in appsGrouped">
-            <div class="col col-33 app"  ng-repeat="app in apps">
-                <div class="content">
-                    <a href="#/app/{{ app.namespace }}">
-                        <img ng-src="{{ app.icon_path }}">
-                        <h2>{{ app.title }}</h2>
-                    </a>
-                </div>
-            </div>
-        </div>
+        <ion-list>
+            <ion-item class="item item-thumbnail-left" collection-repeat="app in apps" type="item-text-wrap" ng-click="openApp(app.namespace)" item-height="100px">
+                <img ng-src="{{ app.icon_path }}">
+                <h2>{{ app.title }}</h2>
+                <p>{{ app.description }}</p>
+            </ion-item>
+        </ion-list>
     </ion-content>
 </ion-view>

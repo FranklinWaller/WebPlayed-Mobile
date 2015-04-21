@@ -62,8 +62,40 @@ app.factory('User', ['$http', function ($http, localStorageService) {
             });
         },
 
-        getInstalledApps: function(callback){
+        logout: function(){
+            var iframe = $('<iframe></iframe>');
+            iframe.attr('src', base_url + 'logout');
 
+            iframe.load(function(e){
+
+            });
+
+            $('body').append(iframe);
+        },
+
+        getInstalledApps: function(callback){
+            httpHelper.api('Me/Installed', 'GET', {
+                begin: 0,
+                end: 50
+            }, function(result){
+                sessionStorage.setItem('apps', JSON.stringify(result.response));
+                callback(result.response);
+            });
+        },
+
+        getInstalledApp: function(namespace){
+            var apps = JSON.parse(sessionStorage.getItem('apps'));
+            for (var i = 0; i < apps.length; i++){
+                if(apps[i].namespace == namespace) {
+                    return apps[i];
+                }
+            }
+        },
+
+        getNotifications: function(callback){
+            httpHelper.api('Notification/All', 'GET', {}, function(result){
+                callback(result.response);
+            });
         }
     };
 

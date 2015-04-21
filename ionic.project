@@ -1,6 +1,6 @@
 {
   "name": "WebPlayed-Mobile",
-  "app_id": "3e08c684",
+  "app_id": "639587c5",
   "gulpStartupTasks": [
     "sass",
     "watch"
