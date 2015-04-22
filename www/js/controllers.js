@@ -109,22 +109,33 @@ appControllers.controller('AppCtrl', function($scope, $state, $stateParams, $ion
     var user = JSON.parse(localStorage.getItem('user'));
     var app = User.getInstalledApp($stateParams.namespace);
     var iCanvas = $("#icanvas");
+    var iCanvasDOM = document.getElementById('icanvas');
 
     //App should not be scrollable
     if(app.scrollable == '1'){
         iCanvas.attr('scrolling', 'no');
     } else {
+        console.log('Scrolling is a thing');
         iCanvas.attr('scrolling', 'yes');
     }
 
     $scope.app = {
-        url: base_url + 'app/' + $stateParams.namespace + '?wbp_refresh_hash=' + user.authData.hash
+        url: base_url + 'app/' + $stateParams.namespace + '?wbp_refresh_hash=' + user.authData.hash,
+        title: app.title
     };
+
+    $scope.goBack = function(){
+        window.history.back();
+    };
+
+    $scope.goForward = function(){
+        window.history.forward();
+    }
 
     $scope.return = function(){
         //Close the app or otherwise we will get memory problems.
         iCanvas.attr('src', 'about:blank');
-        $ionicHistory.goBack();
+        $state.go('tab.dash');
     };
 });
 

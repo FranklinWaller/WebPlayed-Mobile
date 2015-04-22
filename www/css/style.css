@@ -143,13 +143,22 @@
     overflow-y: scroll;
     overflow-x: hidden;
     height: 1px;
-    min-height: calc(100% - 20px);
+    min-height: calc(100% - 50px);
+    position: absolute;
+    left:0;
+    right: 0;
+    top:50px;
+}
+
+.iframe-issue {
+    -webkit-overflow-scrolling: touch !important;
 }
 
 .return {
     width: 100%;
     background-color: #252525;
-    margin-top: 20px;
+    padding-top: 20px;
+    position: fixed;
 }
 
 .return a {
@@ -160,4 +169,55 @@
     margin-top:0px;
     width: 100%;
     text-decoration: none;
+}
+
+.task-bar {
+    background-color: #252525;
+    height: 60px;
+    margin-top: -10px;
+    position: fixed;
+    width: 100%;
+    z-index: 1;
+}
+
+.task-bar h1 {
+    color:white;
+    position: absolute;
+    left:0;
+    right: 0;
+    top:33px;
+    margin: 0 auto;
+    text-align: center;
+    font-size: 17px;
+    z-index: 0;
+    font-weight: 200;
+}
+
+.task-bar a {
+    color:white;
+    text-decoration: none;
+    font-size: 30px;
+    z-index: 1;
+}
+
+.task-bar .right {
+    position: relative;
+    float:right;
+    margin-top: 30px;
+    margin-right: 10px;
+}
+
+.task-bar .right a {
+    margin-left: 10px;
+}
+
+.task-bar .left {
+    position: relative;
+    float:left;
+    margin-top: 30px;
+    margin-left: 10px;
+}
+
+.task-bar .left a {
+    margin-right: 10px;
 }
