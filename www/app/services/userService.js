@@ -78,13 +78,13 @@ app.factory('User', ['$http', function ($http, localStorageService) {
                 begin: 0,
                 end: 50
             }, function(result){
-                sessionStorage.setItem('apps', JSON.stringify(result.response));
+                localStorage.setItem('apps', JSON.stringify(result.response));
                 callback(result.response);
             });
         },
 
         getInstalledApp: function(namespace){
-            var apps = JSON.parse(sessionStorage.getItem('apps'));
+            var apps = JSON.parse(localStorage.getItem('apps'));
             for (var i = 0; i < apps.length; i++){
                 if(apps[i].namespace == namespace) {
                     return apps[i];

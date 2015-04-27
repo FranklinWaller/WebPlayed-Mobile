@@ -7,7 +7,7 @@
                 on-refresh="doRefresh()">
         </ion-refresher>
         <ion-list>
-            <ion-item class="item item-thumbnail-left" collection-repeat="app in apps" type="item-text-wrap" ng-click="openApp(app.namespace)" item-height="100px">
+            <ion-item class="item item-avatar" collection-repeat="app in apps" type="item-text-wrap" ng-click="openApp(app.namespace)">
                 <img ng-src="{{ app.icon_path }}">
                 <h2>{{ app.title }}</h2>
                 <p>{{ app.description }}</p>

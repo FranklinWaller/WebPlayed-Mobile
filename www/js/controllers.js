@@ -63,6 +63,9 @@ appControllers.controller('LoginCtrl', function($scope, $state){
 });
 
 appControllers.controller('DashCtrl', function($scope, $state, $ionicHistory, User) {
+    var apps = localStorage.getItem('apps');
+    var user = JSON.parse(localStorage.getItem('user'));
+
     $scope.doRefresh = function(){
         User.getInstalledApps(function(apps){
             $scope.apps = apps;
@@ -71,18 +74,28 @@ appControllers.controller('DashCtrl', function($scope, $state, $ionicHistory, Us
     };
 
     $scope.openApp = function(namespace){
-        $ionicHistory.clearHistory();
-        $state.go('app',{
+        //$ionicHistory.clearHistory();
+        //$ionicHistory.clearCache();
+        var appUrl = base_url + 'app/' + namespace + '?wbp_refresh_hash=' + user.authData.hash;
+        window.open(appUrl, '_blank', config.windowSettings);
+        /*$state.go('app',{
             namespace: namespace
-        });
+        });*/
     };
 
-    User.getInstalledApps(function(apps){
-        $scope.apps = apps;
-    });
+    if(apps == null) {
+        User.getInstalledApps(function(apps){
+            $scope.apps = apps;
+        });
+    } else {
+        $scope.apps = JSON.parse(apps);
+    }
+
 });
 
 appControllers.controller('ChatsCtrl', function($scope, $state, User) {
+    var user = JSON.parse(localStorage.getItem('user'));
+
     User.getNotifications(function(notifications){
         $scope.notifications = notifications.notifications;
     });
@@ -95,9 +108,11 @@ appControllers.controller('ChatsCtrl', function($scope, $state, User) {
     };
 
     $scope.openApp = function(namespace, action){
-        $state.go('app', {
+        var appUrl = base_url + 'app/' + namespace + action + '&wbp_refresh_hash=' + user.authData.hash;;
+        window.open(appUrl, '_blank', config.windowSettings);
+        /*$state.go('app', {
             namespace:namespace
-        });
+        });*/
     };
 });
 
@@ -105,8 +120,11 @@ appControllers.controller('ChatDetailCtrl', function($scope, $stateParams, User)
 
 });
 
-appControllers.controller('AppCtrl', function($scope, $state, $stateParams, $ionicViewService, $ionicPlatform, $ionicHistory, User) {
-    var user = JSON.parse(localStorage.getItem('user'));
+appControllers.controller('AppCtrl', function($scope, $state, $stateParams, $ionicPlatform, $ionicHistory, User) {
+
+
+
+    /*var user = JSON.parse(localStorage.getItem('user'));
     var app = User.getInstalledApp($stateParams.namespace);
     var iCanvas = $("#icanvas");
     var iCanvasDOM = document.getElementById('icanvas');
@@ -134,9 +152,13 @@ appControllers.controller('AppCtrl', function($scope, $state, $stateParams, $ion
 
     $scope.return = function(){
         //Close the app or otherwise we will get memory problems.
-        iCanvas.attr('src', 'about:blank');
+        $scope.app.url = 'about:blank';
         $state.go('tab.dash');
-    };
+    };*/
+});
+
+appControllers.controller('WidgetsCtrl', function($scope, $state, User) {
+
 });
 
 appControllers.controller('AccountCtrl', function($scope, $state, User) {

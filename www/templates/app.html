@@ -1,6 +1,6 @@
 <ion-view view-title="App" hide-nav-bar="true">
-    <ion-content scroll="true" overflow-scroll="true" class="iframe-issue">
-        <div class="task-bar">
+    <ion-content scroll="true" overflow-scroll="true" class="iframe-issue" has-bouncing="false">
+        <!--<div class="task-bar">
             <div class="left">
                 <a href="javascript:void(0)" class="ion-ios-arrow-back arrow" ng-click="goBack()"></a>
                 <a href="javascript:void(0)" class="ion-ios-arrow-forward arrow" ng-click="goForward()"></a>
@@ -10,8 +10,8 @@
                 <a href="javascript:void(0)" ng-click="return()">&times;</a>
             </div>
         </div>
-        <iframe scrolling="no" ng-src="{{ app.url }}" class="icanvas" id="icanvas">
+        <iframe data-tap-disabled="true" ng-src="{{ app.url }}" class="icanvas" id="icanvas">
             FrameCanvas is not supported on your device.
-        </iframe>
+        </iframe>-->
     </ion-content>
 </ion-view>

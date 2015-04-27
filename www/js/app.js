@@ -67,6 +67,17 @@ var app = angular.module('starter', ['ionic', 'starter.controllers', 'starter.se
     }
   })
 
+  .state('tab.widgets', {
+    url: '/widgets',
+    views: {
+      'tab-widgets': {
+        templateUrl: 'templates/tab-widgets.html',
+        controller: 'WidgetsCtrl'
+      }
+    }
+  })
+
+
   .state('tab.chats', {
       url: '/chats',
       views: {
