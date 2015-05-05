@@ -6,12 +6,18 @@
             pulling-icon="ion-ios-arrow-down"
             on-refresh="doRefresh()">
     </ion-refresher>
+      <div class="card" ng-show="noItems">
+          <div class="item item-text-wrap">
+              No notifications
+          </div>
+      </div>
     <ion-list>
-      <ion-item class="item item-avatar" collection-repeat="notification in notifications" type="item-text-wrap" ng-click="openApp(notification.namespace, notification.action)">
+      <ion-item class="item item-avatar" collection-repeat="notification in notifications" type="item-text-wrap" ng-click="openApp(notification.namespace, notification.action)" line-height="70px">
         <img ng-src="{{ notification.icon_path }}">
         <h2>{{ notification.title }}</h2>
         <p>{{ notification.message }}</p>
       </ion-item>
     </ion-list>
+
   </ion-content>
 </ion-view>

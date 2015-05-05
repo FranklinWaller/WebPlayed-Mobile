@@ -64,6 +64,9 @@
         "org.apache.cordova.statusbar": {
             "PACKAGE_NAME": "com.ionicframework.webplayedmobile519932"
         },
+        "com.phonegap.plugins.OrientationLock": {
+            "PACKAGE_NAME": "com.ionicframework.webplayedmobile519932"
+        },
         "org.apache.cordova.inappbrowser": {
             "PACKAGE_NAME": "com.ionicframework.webplayedmobile519932"
         }

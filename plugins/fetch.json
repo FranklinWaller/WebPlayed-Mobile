@@ -28,5 +28,18 @@
             "type": "registry",
             "id": "org.apache.cordova.inappbrowser"
         }
+    },
+    "com.phonegap.plugins.OrientationLock": {
+        "source": {
+            "type": "git",
+            "url": "https://github.com/cogitor/PhoneGap-OrientationLock.git",
+            "subdir": "."
+        }
+    },
+    "com.initialxy.cordova.themeablebrowser": {
+        "source": {
+            "type": "registry",
+            "id": "com.initialxy.cordova.themeablebrowser"
+        }
     }
 }

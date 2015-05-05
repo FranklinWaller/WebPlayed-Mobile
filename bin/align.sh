@@ -1,0 +1,1 @@
+zipalign -v 4 MainActivity-release-unsigned.apk WebPlayed.apk

@@ -9,7 +9,7 @@
                         <button class="button button-block button-positive" ng-click="moveToSlide(1)">
                             Show me what this is!
                         </button>
-                        <a href="#" ng-click="moveToSlide(2)">Skip the explanations.</a>
+                        <a href="#" ng-click="moveToSlide(3)">Skip the explanations.</a>
                     </div>
 
                 </div>
@@ -18,8 +18,16 @@
 
             <ion-slide class="background-second">
                 <div class="box second">
-                    <h1>Keep on moving</h1>
+                    <h1>Keep going</h1>
                     <p>Take your games and apps everywhere you go</p>
+                    <p>Every app will work on every internet connected device.</p>
+                </div>
+            </ion-slide>
+            <ion-slide class="background-third">
+                <div class="box third">
+                    <h1>Power of the Cloud</h1>
+                    <p>Never lose your documents, save data and notes.</p>
+                    <p>Now you can continue your progress everywhere</p>
                 </div>
             </ion-slide>
             <ion-slide class="background-one">
@@ -28,13 +36,11 @@
                     <p>
                         Games and Apps for every device
                     </p>
-                    <button class="button button-block button-positive" ng-click="modal.show()">
-                        Log in
+                    <button class="button button-block button-positive" ng-click="register()">
+                        Register
                     </button>
+                    <a class="login" href="javascript:void(0)" ng-click="modal.show()">Have an account? Log In</a>
                 </div>
-            </ion-slide>
-            <ion-slide class="background-three">
-                <div class="box third"><h1>PINK</h1></div>
             </ion-slide>
         </ion-slide-box>
 
@@ -60,6 +66,7 @@
                         <button class="button button-block button-positive">
                             Login
                         </button>
+
                     </form>
                 </ion-content>
             </ion-modal-view>

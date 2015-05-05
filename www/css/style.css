@@ -1,9 +1,10 @@
 /* Empty. Add your own CSS if you like */
 
+/*
 .dashboard-image {
     background-image: url(http://localhost:8888/default/com.webplayed.clouddrive/get/14679-clouds-cloud-wallpaper.jpg/);
     background-size: cover;
-}
+}*/
 
 .dashboard-overlay{
     background-color: #222;
@@ -29,6 +30,15 @@
 .slider-pager:after {
     content: "Swipe to learn more!";
     display: block;
+}
+
+.login {
+    text-align: center;
+    color:white;
+    text-decoration: none;
+    display: block;
+    margin: 0 auto;
+    padding:20px;
 }
 
 .box {
@@ -75,17 +85,28 @@
 }
 
 .background-one {
-    background-image: url(http://www.freebiesgallery.com/wp-content/uploads/2014/02/blurred-background-9.jpg);
+    background-image: url(../img/showcase-last.jpg);
     background-size: cover;
     background-position: center;
     height: 100%;
 }
 
 .background-second {
-    background-image: url(http://www.momscleanairforce.org/wp-content/uploads/gratitude.jpg);
+    background-image: url(../img/showcase1.jpg);
     background-size: cover;
     background-position: center;
     height: 100%;
+}
+
+.background-third {
+    background-image: url(../img/showcase2.jpg);
+    background-size: cover;
+    background-position: center;
+    height: 100%;
+}
+
+.third h1, .third p {
+    color:#252525;
 }
 
 .scroll {

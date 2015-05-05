@@ -1,0 +1,1 @@
+keytool -genkey -v -keystore webplayed.keystore -alias webplayed -keyalg RSA -keysize 2048 -validity 10000

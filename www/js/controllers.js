@@ -12,6 +12,10 @@ appControllers.controller('ShowcaseCtrl', function($scope, $ionicSlideBoxDelegat
         }
     };
 
+    $scope.register = function(){
+        window.open(base_url + 'register', '_system');
+    };
+
     $scope.user = {};
     $scope.user.email = '';
     $scope.user.password = '';
@@ -97,11 +101,21 @@ appControllers.controller('ChatsCtrl', function($scope, $state, User) {
     var user = JSON.parse(localStorage.getItem('user'));
 
     User.getNotifications(function(notifications){
+        if(notifications.counter == 0){
+            $scope.noItems = true;
+        }
+
         $scope.notifications = notifications.notifications;
     });
 
     $scope.doRefresh = function(){
         User.getNotifications(function(notifications){
+            if(notifications.counter == 0){
+                $scope.noItems = true;
+            }
+
+            console.log(notifications);
+
             $scope.notifications = notifications.notifications;
             $scope.$broadcast('scroll.refreshComplete');
         });

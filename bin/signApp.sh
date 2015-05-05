@@ -1,0 +1,1 @@
+jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore webplayed.keystore MainActivity-release-unsigned.apk webplayed
