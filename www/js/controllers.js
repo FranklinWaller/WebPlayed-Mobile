@@ -66,33 +66,61 @@ appControllers.controller('LoginCtrl', function($scope, $state){
   }
 });
 
-appControllers.controller('DashCtrl', function($scope, $state, $ionicHistory, User) {
+appControllers.controller('DashCtrl', function($scope, $state, $ionicHistory, $filter, $ionicActionSheet, User) {
     var apps = localStorage.getItem('apps');
     var user = JSON.parse(localStorage.getItem('user'));
 
     $scope.doRefresh = function(){
         User.getInstalledApps(function(apps){
-            $scope.apps = apps;
+            console.log(apps);
+            //$scope.apps = apps;
+            $scope.apps = $filter('groupBy')(apps, 3); 
             $scope.$broadcast('scroll.refreshComplete');
+        });
+    };
+    
+    $scope.toggleAppView = function(){
+        
+    };
+    
+    $scope.holdMenu = function(namespace){
+        var app = User.getInstalledApp(namespace);
+        
+        var moreSheet = $ionicActionSheet.show({
+            titleText: app.title,
+            destructiveText: 'Delete',
+            buttons: [
+                { text: 'Keep offline' },
+                { text: 'Info' }
+            ],
+            buttonClicked: function(index){
+                switch(index) {
+                    case 1: 
+                        $state.go('tab.dash-info', {
+                            namespace: namespace
+                        });
+                    break;
+                }
+                
+                return true;
+            }
         });
     };
 
     $scope.openApp = function(namespace){
-        //$ionicHistory.clearHistory();
-        //$ionicHistory.clearCache();
         var appUrl = base_url + 'app/' + namespace + '?wbp_refresh_hash=' + user.authData.hash;
         window.open(appUrl, '_blank', config.windowSettings);
-        /*$state.go('app',{
-            namespace: namespace
-        });*/
     };
 
     if(apps == null) {
         User.getInstalledApps(function(apps){
-            $scope.apps = apps;
+             $scope.apps = $filter('groupBy')(apps, 3); 
+            //$scope.apps = apps;
         });
     } else {
-        $scope.apps = JSON.parse(apps);
+        $scope.apps = $filter('groupBy')(JSON.parse(apps), 3); 
+    	   
+        //$scope.apps = JSON.parse(apps);
     }
 
 });
@@ -130,8 +158,8 @@ appControllers.controller('ChatsCtrl', function($scope, $state, User) {
     };
 });
 
-appControllers.controller('ChatDetailCtrl', function($scope, $stateParams, User) {
-
+appControllers.controller('DashInfoCtrl', function($scope, $stateParams, User) {
+    $scope.app = User.getInstalledApp($stateParams.namespace);
 });
 
 appControllers.controller('AppCtrl', function($scope, $state, $stateParams, $ionicPlatform, $ionicHistory, User) {
@@ -186,4 +214,8 @@ appControllers.controller('AccountCtrl', function($scope, $state, User) {
         localStorage.clear();
         $state.go('showcase');
     }
+});
+
+appControllers.controller('GeneralSettingsCtrl', function($scope, $state, User) {
+    console.log('hi');
 });

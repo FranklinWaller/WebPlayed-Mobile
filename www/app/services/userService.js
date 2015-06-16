@@ -57,6 +57,7 @@ app.factory('User', ['$http', function ($http, localStorageService) {
                     $('body').append(iframe);
                 },
                 error: function(data) {
+                    console.log(data);
                     callback(false);
                 }
             });
@@ -78,8 +79,8 @@ app.factory('User', ['$http', function ($http, localStorageService) {
                 begin: 0,
                 end: 50
             }, function(result){
-                localStorage.setItem('apps', JSON.stringify(result.response));
-                callback(result.response);
+                localStorage.setItem('apps', JSON.stringify(result.response.Result));
+                callback(result.response.Result);
             });
         },
 
@@ -94,7 +95,7 @@ app.factory('User', ['$http', function ($http, localStorageService) {
 
         getNotifications: function(callback){
             httpHelper.api('Notification/All', 'GET', {}, function(result){
-                callback(result.response);
+                callback(result.response.Result);
             });
         }
     };

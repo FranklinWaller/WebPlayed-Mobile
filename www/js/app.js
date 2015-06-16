@@ -7,8 +7,8 @@
 // 'starter.controllers' is found in controllers.js
 var app = angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'LocalStorageModule'])
 
-.run(function($ionicPlatform) {
-  $ionicPlatform.ready(function() {
+  .run(function ($ionicPlatform) {
+  $ionicPlatform.ready(function () {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
     if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
@@ -23,8 +23,8 @@ var app = angular.module('starter', ['ionic', 'starter.controllers', 'starter.se
   });
 })
 
-.config(function($stateProvider, $urlRouterProvider, $sceProvider) {
-      $sceProvider.enabled(false);
+  .config(function ($stateProvider, $urlRouterProvider, $sceProvider) {
+  $sceProvider.enabled(false);
 
   // Ionic uses AngularUI Router which uses the concept of states
   // Learn more here: https://github.com/angular-ui/ui-router
@@ -39,37 +39,58 @@ var app = angular.module('starter', ['ionic', 'starter.controllers', 'starter.se
     templateUrl: "templates/tabs.html"
   })
 
-  .state('login',{
+    .state('login', {
     url: "/login",
     templateUrl: "templates/login.html",
     controller: 'LoginCtrl'
   })
 
-      .state('showcase', {
-        url: "/showcase",
-        templateUrl: "templates/showcase.html",
-        controller: 'ShowcaseCtrl'
-      })
+    .state('showcase', {
+    url: "/showcase",
+    templateUrl: "templates/showcase.html",
+    controller: 'ShowcaseCtrl'
+  })
 
-      .state('app', {
-        url: '/app/:namespace',
-        templateUrl: 'templates/app.html',
-        controller: 'AppCtrl'
-      })
+    .state('app', {
+    url: '/app/:namespace',
+    templateUrl: 'templates/app.html',
+    controller: 'AppCtrl'
+  })
+
+  //Settings
+    .state('tab.account-general', {
+    url: "/account/general",
+    views: {
+      'tab-account': {
+        templateUrl: "templates/tab-generalSettings.html",
+        controller: 'GeneralSettingsCtrl'
+      }
+    }
+  })
 
   // Each tab has its own nav history stack:
 
-  .state('tab.dash', {
+    .state('tab.dash', {
     url: '/dash',
     views: {
       'tab-dash': {
-        templateUrl: 'templates/tab-dash.html',
+        templateUrl: 'templates/apps/grid.html',
         controller: 'DashCtrl'
       }
     }
   })
 
-  .state('tab.widgets', {
+    .state('tab.dash-info', {
+    url: '/dash/info/:namespace',
+    views: {
+      'tab-dash': {
+        templateUrl: 'templates/apps/info.html',
+        controller: 'DashInfoCtrl'
+      }
+    }
+  })
+
+    .state('tab.widgets', {
     url: '/widgets',
     views: {
       'tab-widgets': {
@@ -80,26 +101,26 @@ var app = angular.module('starter', ['ionic', 'starter.controllers', 'starter.se
   })
 
 
-  .state('tab.chats', {
-      url: '/chats',
-      views: {
-        'tab-chats': {
-          templateUrl: 'templates/tab-chats.html',
-          controller: 'ChatsCtrl'
-        }
+    .state('tab.chats', {
+    url: '/chats',
+    views: {
+      'tab-chats': {
+        templateUrl: 'templates/tab-chats.html',
+        controller: 'ChatsCtrl'
       }
-    })
+    }
+  })
     .state('tab.chat-detail', {
-      url: '/chats/:chatId',
-      views: {
-        'tab-chats': {
-          templateUrl: 'templates/chat-detail.html',
-          controller: 'ChatDetailCtrl'
-        }
+    url: '/chats/:chatId',
+    views: {
+      'tab-chats': {
+        templateUrl: 'templates/chat-detail.html',
+        controller: 'ChatDetailCtrl'
       }
-    })
+    }
+  })
 
-  .state('tab.account', {
+    .state('tab.account', {
     url: '/account',
     views: {
       'tab-account': {
@@ -110,11 +131,11 @@ var app = angular.module('starter', ['ionic', 'starter.controllers', 'starter.se
   });
 
   // if none of the above states are matched, use this as the fallback
-      if(authenticate.isLoggedIn()){
-        $urlRouterProvider.otherwise('/tab/dash');
-      } else {
-        $urlRouterProvider.otherwise('/showcase');
-      }
+  if (authenticate.isLoggedIn()) {
+    $urlRouterProvider.otherwise('/tab/dash');
+  } else {
+    $urlRouterProvider.otherwise('/showcase');
+  }
 
 
 });

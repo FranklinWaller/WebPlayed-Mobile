@@ -4,13 +4,18 @@
     </ion-nav-buttons>-->
     <ion-content>
         <ion-refresher pulling-text="Pull to refresh..." spinner="crescent" pulling-icon="ion-ios-arrow-down" on-refresh="doRefresh()"></ion-refresher>
-        <ion-list>
+        <div class="row" ng-repeat="group in apps">
+            <div class="col col-33 grid-item" ng-repeat="app in group" on-hold="holdMenu(app.namespace)" ng-click="openApp(app.namespace)">
+                <img ng-src="{{ app.icon_path }}">
+                <h2>{{ app.title }}</h2>
+            </div>
+        </div>
+        <!--<ion-list>
             <ion-item class="item item-avatar" collection-repeat="app in apps" type="item-text-wrap" ng-click="openApp(app.namespace)"
             item-height="70px">
                 <img ng-src="{{ app.icon_path }}">
                 <h2>{{ app.title }}</h2>
                 <p>{{ app.description }}</p>
             </ion-item>
-        </ion-list>
-    </ion-content>
+        </ion-list>--></ion-content>
 </ion-view>
