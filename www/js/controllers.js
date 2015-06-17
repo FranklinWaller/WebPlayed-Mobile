@@ -62,18 +62,16 @@ appControllers.controller('ShowcaseCtrl', function($scope, $ionicSlideBoxDelegat
 
 appControllers.controller('LoginCtrl', function($scope, $state){
   $scope.login = function(){
-      $state.go('tab.dash');
+      $state.go('tab.dash'); 
   }
 });
 
-appControllers.controller('DashCtrl', function($scope, $state, $ionicHistory, $filter, $ionicActionSheet, User) {
+appControllers.controller('DashCtrl', function($scope, $state, $ionicHistory, $filter, $ionicActionSheet, User, Package) {
     var apps = localStorage.getItem('apps');
     var user = JSON.parse(localStorage.getItem('user'));
 
     $scope.doRefresh = function(){
         User.getInstalledApps(function(apps){
-            console.log(apps);
-            //$scope.apps = apps;
             $scope.apps = $filter('groupBy')(apps, 3); 
             $scope.$broadcast('scroll.refreshComplete');
         });
@@ -85,21 +83,36 @@ appControllers.controller('DashCtrl', function($scope, $state, $ionicHistory, $f
     
     $scope.holdMenu = function(namespace){
         var app = User.getInstalledApp(namespace);
+        var buttons = [{ text: 'Info'}];
+        var buttonIndex = {
+            keepOffline: -1,
+            info: 0
+        };
+        
+        
+        if (app.package != null) {
+            buttons.unshift({text: 'Keep offline'});
+            buttonIndex.keepOffline = 0;
+            buttonIndex.info = 1;
+        }
         
         var moreSheet = $ionicActionSheet.show({
             titleText: app.title,
             destructiveText: 'Delete',
-            buttons: [
-                { text: 'Keep offline' },
-                { text: 'Info' }
-            ],
+            buttons: buttons,
             buttonClicked: function(index){
                 switch(index) {
-                    case 1: 
+                    case buttonIndex.keepOffline:
+                        Package.saveOffline(namespace, function(){
+                            
+                        });
+                    break;
+                    case buttonIndex.info: 
                         $state.go('tab.dash-info', {
                             namespace: namespace
                         });
                     break;
+                    
                 }
                 
                 return true;
@@ -108,7 +121,8 @@ appControllers.controller('DashCtrl', function($scope, $state, $ionicHistory, $f
     };
 
     $scope.openApp = function(namespace){
-        var appUrl = base_url + 'app/' + namespace + '?wbp_refresh_hash=' + user.authData.hash;
+        //var appUrl = base_url + 'app/' + namespace + '?wbp_refresh_hash=' + user.authData.hash;
+        var appUrl = 'cdvfile://localhost/persistent/apps/offline/' + namespace + '/index.html';
         window.open(appUrl, '_blank', config.windowSettings);
     };
 
